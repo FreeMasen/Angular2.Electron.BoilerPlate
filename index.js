@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu, Tray} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -27,6 +27,27 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
+
+  var menu = Menu.buildFromTemplate([{
+    label: 'File',
+    accelerator: 'CmdOrCtrl+R',
+    click (item, focusedWindow) {
+      focusedWindow.loadUrl(__dirname + '/index.html');
+    }
+  },{
+      label: 'Close Window',
+      accelerator: 'CmdOrCtrl+W',
+      click(item, focusedWindow) {
+        focusedWindow.close();
+      }
+    },{
+      label: 'Quit',
+      accelerator: 'CmdOrCtrl+Q',
+      click(item, focusedWindow) {
+        app.quit();
+      }
+    }])
+
 }
 
 // This method will be called when Electron has finished
