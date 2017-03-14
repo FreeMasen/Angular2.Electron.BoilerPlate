@@ -5,6 +5,7 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+let icon
 
 function createWindow () {
   // Create the browser window.
@@ -47,7 +48,9 @@ function createWindow () {
         app.quit();
       }
     }])
-
+    if (!icon) {
+      icon = new Tray(__dirname + '/assets/icon.png')
+    }
 }
 
 // This method will be called when Electron has finished
